@@ -17,14 +17,17 @@ clean:
 
 
 
-process: main.o processor.o tsv.o collect_tag_country.o collect_tag_city.o
-	$(LINK) process		\
-		main.o processor.o tsv.o collect_tag_country.o collect_tag_city.o	\
-			$(LIBS)
+process: main.o processor.o tsv.o	\
+			collect_tag_country.o collect_tag_city.o collect_tag_total.o
+	$(LINK) process				\
+		main.o processor.o tsv.o	\
+			collect_tag_country.o collect_tag_city.o collect_tag_total.o	\
+				$(LIBS)
 
 
 
-main.o: main.cc defs.h collect.h tag.h tsv.h
+main.o: main.cc defs.h collect.h tag.h tsv.h	\
+			collect_tag_country.h collect_tag_city.h collect_tag_total.h
 	$(CC) main.cc
 
 tsv.o: tsv.cc
@@ -38,4 +41,8 @@ collect_tag_country.o: collect_tag_country.cc collect_tag_country.h collect.h ts
 
 collect_tag_city.o: collect_tag_city.cc collect_tag_city.h collect.h tsv.h tag.h
 	$(CC) collect_tag_city.cc
+
+collect_tag_total.o: collect_tag_total.cc collect_tag_total.h collect.h
+	$(CC) collect_tag_total.cc
+
 

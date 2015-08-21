@@ -1,5 +1,5 @@
-#ifndef _COLLECT_COUNTRY_H
-#define _COLLECT_COUNTRY_H
+#ifndef _COLLECT_TAG_COUNTRY_H
+#define _COLLECT_TAG_COUNTRY_H
 
 #include "collect.h"
 

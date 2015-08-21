@@ -5,6 +5,7 @@
 
 #include "collect_tag_country.h"
 #include "collect_tag_city.h"
+#include "collect_tag_total.h"
 
 #include <iostream>
 #include <fstream>
@@ -34,10 +35,11 @@ int main(int argc, char **argv){
 	if (argc < 2)
 		return printHelp(argv[0]);
 
-	CollectTagCountry	cc1 = { "TOP_TAG_BY_COUNTRY",	TOP_COUNT, COUNTRY_RESERVE };
-	CollectTagCity		cc2 = { "TOP_TAG_BY_CITY",	TOP_COUNT, CITY_RESERVE };
+	CollectTagCountry	cc1 = { "TOP_TAG_BY_COUNTRY",			TOP_COUNT, COUNTRY_RESERVE	};
+	CollectTagCity		cc2 = { "TOP_TAG_BY_CITY",			TOP_COUNT, CITY_RESERVE		};
+	CollectTagTotal		cc3 = { "TOP_TAG_TOTAL",	"TOTAL",	TOP_COUNT			};
 
-	std::vector<ICollect *> collectors = { &cc1, &cc2 };
+	std::vector<ICollect *> collectors = { &cc1, &cc2, &cc3 };
 
 	Processor p = { constructStream(argv[1]), collectors };
 
