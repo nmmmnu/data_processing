@@ -2,21 +2,11 @@
 
 #include <iostream>
 
-void CollectCountry::collect(const TSV & fields, std::string & tag){
-	if (tag != fields.tag()){
-		store(tag);
-
-		tag = fields.tag();
-		data_single_tag.clear();
-	}
-
+void CollectCountry::_collect(const TSV & fields, const std::string & tag){
 	++data_single_tag[ fields.country() ];
 }
 
-void CollectCountry::store(const std::string & tag){
-	if (tag.empty())
-		return;
-
+void CollectCountry::_store(const std::string & tag){
 	for ( const auto & pair : data_single_tag ){
 		auto & data_name  = pair.first;
 		auto & data_count = pair.second;
@@ -38,9 +28,11 @@ void CollectCountry::store(const std::string & tag){
 			data_set.erase(iterator);
 		}
 	}
+
+	data_single_tag.clear();
 }
 
-void CollectCountry::print() const{
+void CollectCountry::_print() const{
 	for (const auto & pair : data){
 		auto & country_name = pair.first;
 		auto & country_set  = pair.second;
@@ -58,12 +50,3 @@ void CollectCountry::print() const{
 	}
 }
 
-void CollectCountry::cleanup(bool doReserve){
-	data_single_tag.clear();
-	data_minimums.clear();
-
-	if (doReserve && _reserve){
-		data_single_tag.reserve(_reserve);
-		data_minimums.reserve(_reserve);
-	}
-}
