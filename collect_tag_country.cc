@@ -1,12 +1,12 @@
-#include "collectcountry.h"
+#include "collect_tag_country.h"
 
 #include <iostream>
 
-void CollectCountry::_collect(const TSV & fields, const std::string & tag){
+void CollectTagCountry::_collect(const TSV & fields, const std::string & tag){
 	++data_single_tag[ fields.country() ];
 }
 
-void CollectCountry::_store(const std::string & tag){
+void CollectTagCountry::_store(const std::string & tag){
 	for ( const auto & pair : data_single_tag ){
 		auto & data_name  = pair.first;
 		auto & data_count = pair.second;
@@ -32,7 +32,7 @@ void CollectCountry::_store(const std::string & tag){
 	data_single_tag.clear();
 }
 
-void CollectCountry::_print() const{
+void CollectTagCountry::_print() const{
 	for (const auto & pair : data){
 		auto & country_name = pair.first;
 		auto & country_set  = pair.second;

@@ -3,8 +3,53 @@
 #include "defs.h"
 #include "processor.h"
 
-#include "collectcountry.h"
-#include "collectcountrycity.h"
+#include "collect_tag_country.h"
+#include "collect_tag_city.h"
+
+#include <iostream>
+#include <fstream>
+
+static int printHelp(const char *name);
+
+
+
+
+
+std::ifstream	ifs;
+
+std::istream & constructStream(const char *filename){
+	if (filename[0] == '-' && filename[1] == '\0')
+		return std::cin;
+
+	ifs.open(filename);
+
+	return ifs;
+}
+
+
+
+
+
+int main(int argc, char **argv){
+	if (argc < 2)
+		return printHelp(argv[0]);
+
+	CollectTagCountry	cc1 = { "TOP_TAG_BY_COUNTRY",	TOP_COUNT, COUNTRY_RESERVE };
+	CollectTagCity		cc2 = { "TOP_TAG_BY_CITY",	TOP_COUNT, CITY_RESERVE };
+
+	std::vector<ICollect *> collectors = { &cc1, &cc2 };
+
+	Processor p = { constructStream(argv[1]), collectors };
+
+	p.process();
+	p.print();
+
+	return 0;
+}
+
+
+
+
 
 static int printHelp(const char *name){
 	constexpr static const auto format = "\t%s %-*s - %s\n";
@@ -24,20 +69,3 @@ static int printHelp(const char *name){
 
 	return 1;
 }
-
-int main(int argc, char **argv){
-	if (argc < 2)
-		return printHelp(argv[0]);
-
-	CollectCountry		cc1 { "TOP_TAG_BY_COUNTRY",	TOP_COUNT, COUNTRY_RESERVE };
-	CollectCountryCity	cc2 { "TOP_TAG_BY_CITY",	TOP_COUNT, CITY_RESERVE };
-
-	std::vector<ICollect *> collectors = { &cc1, &cc2 };
-
-	Processor p { argv[1], collectors };
-
-	p.process();
-
-	return 0;
-}
-

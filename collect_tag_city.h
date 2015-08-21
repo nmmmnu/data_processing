@@ -1,5 +1,5 @@
-#ifndef _COLLECT_COUNTRY_H
-#define _COLLECT_COUNTRY_H
+#ifndef _COLLECT_COUNTRY_CITY_H
+#define _COLLECT_COUNTRY_CITY_H
 
 #include "collect.h"
 
@@ -8,9 +8,9 @@
 
 // ==========================================
 
-class CollectCountry : public ICollect{
+class CollectTagCity : public ICollect{
 public:
-	CollectCountry(const std::string &prefix, unsigned const topCount, unsigned const reserve = 0) :
+	CollectTagCity(const std::string &prefix, unsigned const topCount, unsigned const reserve = 0) :
 				ICollect(prefix),
 				_topCount(topCount),
 				_reserve(reserve){}

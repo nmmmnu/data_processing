@@ -17,9 +17,9 @@ clean:
 
 
 
-process: main.o processor.o tsv.o collectcountry.o collectcountrycity.o
+process: main.o processor.o tsv.o collect_tag_country.o collect_tag_city.o
 	$(LINK) process		\
-		main.o processor.o tsv.o collectcountry.o collectcountrycity.o	\
+		main.o processor.o tsv.o collect_tag_country.o collect_tag_city.o	\
 			$(LIBS)
 
 
@@ -33,9 +33,9 @@ tsv.o: tsv.cc
 processor.o: processor.cc processor.h collect.h tag.h tsv.h
 	$(CC) processor.cc
 
-collectcountry.o: collectcountry.cc collectcountry.h collect.h tsv.h tag.h
-	$(CC) collectcountry.cc
+collect_tag_country.o: collect_tag_country.cc collect_tag_country.h collect.h tsv.h tag.h
+	$(CC) collect_tag_country.cc
 
-collectcountrycity.o: collectcountrycity.cc collectcountrycity.h collect.h tsv.h tag.h
-	$(CC) collectcountrycity.cc
+collect_tag_city.o: collect_tag_city.cc collect_tag_city.h collect.h tsv.h tag.h
+	$(CC) collect_tag_city.cc
 

@@ -3,6 +3,8 @@
 
 #include "collect.h"
 
+#include <istream>
+
 #include <string>
 #include <vector>
 
@@ -10,17 +12,17 @@
 
 class Processor{
 public:
-	Processor(std::string filename, std::vector<ICollect *> collectors) :
-				_filename(std::move(filename)),
+	Processor(std::istream & input, const std::vector<ICollect *> &collectors) :
+				_input(input),
 				_collectors(collectors){}
 
 public:
 	void process();
-	void processFile(std::istream & input);
+	void print() const;
 
 private:
-	std::string _filename;
-	std::vector<ICollect *> _collectors;
+	std::istream			&_input;
+	const std::vector<ICollect *>	&_collectors;
 };
 
 #endif

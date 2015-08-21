@@ -1,27 +1,14 @@
 #include <cstdint>
 
-#include <iostream>
-#include <fstream>
-
 #include "processor.h"
 
 // ==========================================
 
 void Processor::process(){
-	if (_filename == "-"){
-		std::istream & input = std::cin;
-		processFile(input);
-	}else{
-		std::ifstream input(_filename);
-		processFile(input);
-	}
-}
-
-void Processor::processFile(std::istream & input){
 	TSV fields;
 	std::string tag;
 
-	for(std::string line; getline(input, line);){
+	for(std::string line; getline(_input, line);){
 		fields.load(line);
 
 		if (tag != fields.tag()){
@@ -38,7 +25,9 @@ void Processor::processFile(std::istream & input){
 	// store remaining elements
 	for(auto & cc : _collectors)
 		cc->store(tag);
+}
 
+void Processor::print() const{
 	for(const auto & cc : _collectors)
 		cc->print();
 }
