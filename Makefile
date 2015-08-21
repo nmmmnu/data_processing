@@ -17,8 +17,10 @@ clean:
 
 
 
-process: main.o processor.o tsv.o
-	$(LINK) process		main.o processor.o tsv.o	$(LIBS)
+process: main.o processor.o tsv.o collectcountry.o collectcountrycity.o
+	$(LINK) process		\
+		main.o processor.o tsv.o collectcountry.o collectcountrycity.o	\
+			$(LIBS)
 
 
 
@@ -28,6 +30,12 @@ main.o: main.cc defs.h
 tsv.o: tsv.cc
 	$(CC) tsv.cc
 
-processor.o: processor.cc processor.h defs.h tag.h tsv.h
+processor.o: processor.cc processor.h defs.h tag.h tsv.h collectcountry.h collectcountrycity.h
 	$(CC) processor.cc
+
+collectcountry.o: collectcountry.cc collectcountry.h tag.h tsv.h
+	$(CC) collectcountry.cc
+
+collectcountrycity.o: collectcountrycity.cc collectcountrycity.h tag.h tsv.h
+	$(CC) collectcountrycity.cc
 

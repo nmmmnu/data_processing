@@ -21,42 +21,24 @@ void Processor::process(){
 
 void Processor::processFile(std::istream & input){
 	TSV fields;
-
 	std::string tag;
 
-	country_minimums.clear();
-	country_minimums.reserve(COUNTRY_RESERVE);
-
-	country_single_tag.clear();
-	country_single_tag.reserve(COUNTRY_RESERVE);
+	// remove junk and pre allocate vectors...
+	cc1.cleanup(true);
 
 	for(std::string line; getline(input, line);){
 		fields.load(line);
 
-		countryProcess(fields, tag);
+		cc1.collect(fields, tag);
 	}
 
 	// store remaining elements
-	countryStoreData(tag);
+	cc1.store(tag);
 
-	// remove garbage
-	country_minimums.clear();
-	country_single_tag.clear();
+	// remove junk from memory
+	cc1.cleanup();
 }
 
 void Processor::print() const{
-	for (const auto & pair : country){
-		auto & country_name = pair.first;
-		auto & country_set  = pair.second;
-
-		for (const auto & tp : country_set){
-			const auto & tp_tag   = tp.first;
-			const auto & tp_count = tp.second;
-
-			std::cout
-				<< country_name	<< "\t"
-				<< tp_tag	<< "\t"
-				<< tp_count	<< "\n";
-		}
-	}
+	cc1.print();
 };
