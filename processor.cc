@@ -6,25 +6,32 @@
 
 void Processor::process(){
 	TSV fields;
-	std::string tag;
+	std::string fld;
 
 	for(std::string line; getline(_input, line);){
 		fields.load(line);
 
-		if (tag != fields.tag()){
-			for(auto & cc : _collectors)
-				cc->store(tag);
+		if (fld != fields.get(_fieldID)){
+			_store(fld);
 
-			tag = fields.tag();
+			fld = fields.get(_fieldID);
 		}
 
-		for(auto & cc : _collectors)
-			cc->collect(fields, tag);
+		_collect(fields, fld);
 	}
 
 	// store remaining elements
+	_store(fld);
+}
+
+void Processor::_collect(const TSV & fields, const std::string & fld){
 	for(auto & cc : _collectors)
-		cc->store(tag);
+		cc->collect(fields, fld);
+}
+
+void Processor::_store(const std::string & fld){
+	for(auto & cc : _collectors)
+		cc->store(fld);
 }
 
 void Processor::print() const{

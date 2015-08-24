@@ -21,7 +21,7 @@ void CollectTagCountry::_store(const std::string & tag){
 		if (data_set.size() > _topCount){
 			auto iterator = data_set.cbegin();
 
-			const Tag &pp = *iterator;
+			const MyPair &pp = *iterator;
 			data_minimums[data_name] = pp.second;
 
 			// remove minimum

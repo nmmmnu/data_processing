@@ -16,10 +16,10 @@ public:
 				_reserve(reserve){}
 
 private:
-	unsigned _topCount;
-	unsigned _reserve;
+	unsigned	_topCount;
+	unsigned	_reserve;
 
-	std::unordered_map<std::string, std::set<Tag,TagComp> >		data;
+	std::unordered_map<std::string, std::set<MyPair,MyPairComp> >	data;
 	std::unordered_map<std::string, uint64_t>			data_single_tag;
 	std::unordered_map<std::string, uint64_t>			data_minimums;
 

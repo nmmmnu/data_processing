@@ -9,15 +9,15 @@ CC	= $(MYCC) -std=c++11 -Wall $(OPTIM)	\
 LINK	= $(MYCC) -o
 LIBS	= -lstdc++
 
-all:	process
+all:	processor_tag
 
 clean:
 	rm -f *.o *.d process
 
-process: main.o processor.o tsv.o	\
+processor_tag: main_tag.o processor.o tsv.o	\
 			collect_tag_country.o collect_tag_city.o collect_tag_total.o
-	$(LINK) process				\
-		main.o processor.o tsv.o	\
+	$(LINK) processor_tag			\
+		main_tag.o processor.o tsv.o	\
 			collect_tag_country.o collect_tag_city.o collect_tag_total.o	\
 				$(LIBS)
 

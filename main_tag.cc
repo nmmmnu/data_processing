@@ -39,7 +39,7 @@ int main(int argc, char **argv){
 	std::vector<ICollect *> collectors = { &c1, &c2, &c3 };
 
 
-	Processor p = { constructStream(argv[1]), collectors };
+	Processor p = { constructStream(argv[1]), collectors, TSV::POS_TAG };
 
 	p.process();
 	p.print();

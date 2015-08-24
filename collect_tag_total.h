@@ -15,12 +15,12 @@ public:
 				_topCount(topCount){}
 
 private:
-	std::string		_name;
-	unsigned		_topCount;
+	std::string			_name;
+	unsigned			_topCount;
 
-	std::set<Tag,TagComp>	data;
-	uint64_t		count_single_tag	= 0;
-	uint64_t		count_minimum		= 0;
+	std::set<MyPair,MyPairComp>	data;
+	uint64_t			count_single_tag	= 0;
+	uint64_t			count_minimum		= 0;
 
 private:
 	virtual void _collect(const TSV & fields, const std::string & tag) override;

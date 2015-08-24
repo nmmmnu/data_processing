@@ -2,7 +2,7 @@
 #define _COLLECT_H
 
 #include "tsv.h"
-#include "tag.h"
+#include "mypair.h"
 
 class ICollect{
 public:

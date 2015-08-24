@@ -1,7 +1,8 @@
 *.o
 *.d
 
-process
+processor_tag
+processor_media
 
 _ot/
 
