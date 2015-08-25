@@ -22,7 +22,7 @@ public:
 	void print() const;
 
 private:
-	void _collect(const TSV & fields, const std::string & fld);
+	void _aggregate(const TSV & fields, const std::string & fld);
 	void _store(const std::string & fld);
 
 private:

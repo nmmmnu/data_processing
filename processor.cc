@@ -18,16 +18,16 @@ void Processor::process(){
 			fld = fields.get(_fieldID);
 		}
 
-		_collect(fields, fld);
+		_aggregate(fields, fld);
 	}
 
 	// store remaining elements
 	_store(fld);
 }
 
-void Processor::_collect(const TSV & fields, const std::string & fld){
+void Processor::_aggregate(const TSV & fields, const std::string & fld){
 	for(auto & cc : _collectors)
-		cc->collect(fields, fld);
+		cc->aggregate(fields, fld);
 }
 
 void Processor::_store(const std::string & fld){
