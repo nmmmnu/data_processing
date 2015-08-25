@@ -26,7 +26,7 @@ processor_tag: main_tag.o printhelp.o processor.o tsv.o	\
 
 
 processor_media: main_media.o printhelp.o processor.o tsv.o	\
-			collect_media_like.o collect_media_comment.o
+			collect_media_like.o collect_media_comment.o collect_media_total.o
 	$(LINK) $@ $^		$(LIBS)
 
 

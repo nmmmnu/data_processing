@@ -5,6 +5,7 @@
 
 #include "collect_media_like.h"
 #include "collect_media_comment.h"
+#include "collect_media_total.h"
 
 #include <iostream>
 #include <fstream>
@@ -28,10 +29,11 @@ int main(int argc, char **argv){
 
 	CollectMediaLike	c1 = { "TOP_MEDIA_BY_LIKE",	"TOTAL",	TOP_COUNT	};
 	CollectMediaComment	c2 = { "TOP_MEDIA_BY_COMMENT",	"TOTAL",	TOP_COUNT	};
+	CollectMediaTotal	c3 = { "TOP_MEDIA_TOTAL",	"TOTAL"				};
 
 	std::vector<ICollect *> collectors = {
-					//&c1,
-					&c2 };
+			//&c1, &c2,
+			&c3 };
 
 
 	Processor p = { constructStream(argv[1]), collectors, TSV::POS_MEDIA };
