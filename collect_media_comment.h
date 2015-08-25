@@ -1,5 +1,5 @@
-#ifndef _COLLECT_TAG_LIKE_TOTAL_H
-#define _COLLECT_TAG_LIKE_TOTAL_H
+#ifndef _COLLECT_MEDIA_COMMENT_TOTAL_H
+#define _COLLECT_MEDIA_COMMENT_TOTAL_H
 
 #include "collect.h"
 
@@ -7,9 +7,9 @@
 
 // ==========================================
 
-class CollectMediaLike : public ICollect{
+class CollectMediaComment : public ICollect{
 public:
-	CollectMediaLike(const std::string &prefix, const std::string &name, unsigned const topCount) :
+	CollectMediaComment(const std::string &prefix, const std::string &name, unsigned const topCount) :
 				ICollect(prefix),
 				_name(name),
 				_topCount(topCount){}
