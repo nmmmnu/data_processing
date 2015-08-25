@@ -8,6 +8,8 @@ class ICollect{
 public:
 	ICollect(const std::string &prefix) : _prefix(prefix){}
 
+//	virtual ~ICollect();
+
 	void aggregate(const TSV & fields, const std::string & data){
 		_aggregate(fields, data);
 	}

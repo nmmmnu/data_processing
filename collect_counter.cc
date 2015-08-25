@@ -1,17 +1,20 @@
-#include "collect_media_comment.h"
+#include "collect_counter.h"
 
 #include <iostream>
 
-void CollectMediaComment::_aggregate(const TSV & fields, const std::string & med){
-	if (data_hc)
+void ICollectCounter::_aggregate(const TSV & fields, const std::string & med){
+	if (data_hitcount)
 		return;
 
-	data_single = fields.comment();
-	data_hc = true;
+	data_single = _getCount(fields);
+	data_hitcount = true;
 }
 
-void CollectMediaComment::_store(const std::string & med){
-	data_hc = false;
+void ICollectCounter::_store(const std::string & med){
+	if (data_hitcount == false)
+		return;
+
+	data_hitcount = false;
 
 	if (data_minimum > data_single)
 		return;
@@ -31,7 +34,7 @@ void CollectMediaComment::_store(const std::string & med){
 	// data_single = 0;
 }
 
-void CollectMediaComment::_print() const{
+void ICollectCounter::_print() const{
 	for (const auto & tp : data){
 		const auto & tp_med   = tp.first;
 		const auto & tp_count = tp.second;
@@ -43,4 +46,6 @@ void CollectMediaComment::_print() const{
 			<< tp_count	<< "\n";
 	}
 }
+
+
 

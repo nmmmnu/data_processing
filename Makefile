@@ -24,10 +24,7 @@ processor_tag: main_tag.o printhelp.o processor.o tsv.o	\
 	$(LINK) $@ $^		$(LIBS)
 
 
-processor_media: main_media.o printhelp.o processor.o tsv.o	\
-			collect_media_like.o collect_media_like_country.o	\
-			collect_media_comment.o collect_media_comment_country.o	\
-			collect_media_total.o
+processor_media: main_media.o printhelp.o processor.o tsv.o collect_counter.o collect_counter_all.o collect_aggregate.o
 	$(LINK) $@ $^		$(LIBS)
 
 

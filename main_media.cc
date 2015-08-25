@@ -4,10 +4,12 @@
 #include "processor.h"
 
 #include "collect_media_like.h"
-#include "collect_media_like_country.h"
 #include "collect_media_comment.h"
+
+#include "collect_media_like_country.h"
 #include "collect_media_comment_country.h"
-#include "collect_media_total.h"
+
+#include "collect_counter_all.h"
 
 #include <iostream>
 #include <fstream>
@@ -35,7 +37,7 @@ int main(int argc, char **argv){
 	CollectMediaComment		cc1 = { "TOP_MEDIA_BY_COMMENTS",	"TOTAL",	TOP_COUNT	};
 	CollectMediaCommentCountry	cc2 = { "TOP_MEDIA_BY_COMMENT_COUNTRY",			TOP_COUNT	};
 
-	CollectMediaTotal		tc3 = { "TOP_MEDIA_TOTAL",		"TOTAL"				};
+	CollectCounterAll		tc3 = { "TOP_MEDIA_ALL",		"TOTAL"				};
 
 	std::vector<ICollect *> collectors = { &lc1, &lc2, &cc1, &cc2, &tc3 };
 

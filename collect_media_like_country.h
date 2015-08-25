@@ -1,30 +1,21 @@
 #ifndef _COLLECT_TAG_LIKE_COUNTRY_H
 #define _COLLECT_TAG_LIKE_COUNTRY_H
 
-#include "collect.h"
+#include "collect_aggregate.h"
 
-#include <unordered_map>
-#include <set>
-
-// ==========================================
-
-class CollectMediaLikeCountry : public ICollect{
+class CollectMediaLikeCountry : public ICollectAggregate{
 public:
 	CollectMediaLikeCountry(const std::string &prefix, unsigned const topCount) :
-				ICollect(prefix),
-				_topCount(topCount){}
+				ICollectAggregate(prefix, topCount){}
 
 private:
-	unsigned			_topCount;
+	virtual const std::string &_getItem(const TSV & fields) const override{
+		return fields.country();
+	}
 
-	std::unordered_map<std::string, std::set<MyPair,MyPairComp> >	data;
-	std::unordered_map<std::string, uint64_t>			data_single;
-	std::unordered_map<std::string, uint64_t>			data_minimums;
-
-private:
-	virtual void _aggregate(const TSV & fields, const std::string & tag) override;
-	virtual void _store(const std::string & tag) override;
-	virtual void _print() const override;
+	virtual uint64_t _getCount(const TSV & fields) const override{
+		return fields.like();
+	}
 
 };
 
