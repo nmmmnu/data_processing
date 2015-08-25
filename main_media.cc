@@ -3,11 +3,7 @@
 #include "defs.h"
 #include "processor.h"
 
-#include "collect_media_like.h"
-#include "collect_media_comment.h"
-
-#include "collect_media_like_country.h"
-#include "collect_media_comment_country.h"
+#include "main_media_collectors.h"
 
 #include "collect_counter_all.h"
 
