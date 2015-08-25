@@ -1,5 +1,5 @@
-#ifndef _COLLECT_TAG_TOTAL_H
-#define _COLLECT_TAG_TOTAL_H
+#ifndef _aggregate_TAG_TOTAL_H
+#define _aggregate_TAG_TOTAL_H
 
 #include "collect.h"
 
@@ -23,7 +23,7 @@ private:
 	uint64_t			count_minimum		= 0;
 
 private:
-	virtual void _collect(const TSV & fields, const std::string & tag) override;
+	virtual void _aggregate(const TSV & fields, const std::string & tag) override;
 	virtual void _store(const std::string & tag) override;
 	virtual void _print() const override;
 };

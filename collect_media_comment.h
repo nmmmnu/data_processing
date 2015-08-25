@@ -24,7 +24,7 @@ private:
 	bool				data_hc			= false	;
 
 private:
-	virtual void _collect(const TSV & fields, const std::string & tag) override;
+	virtual void _aggregate(const TSV & fields, const std::string & tag) override;
 	virtual void _store(const std::string & tag) override;
 	virtual void _print() const override;
 

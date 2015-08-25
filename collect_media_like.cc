@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-void CollectMediaLike::_collect(const TSV & fields, const std::string & med){
+void CollectMediaLike::_aggregate(const TSV & fields, const std::string & med){
 	if (data_hc)
 		return;
 

@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-void CollectMediaLikeCountry::_collect(const TSV & fields, const std::string & med){
+void CollectMediaLikeCountry::_aggregate(const TSV & fields, const std::string & med){
 	data_single[ fields.country() ] = fields.like();
 }
 

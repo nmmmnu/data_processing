@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-void CollectTagCountry::_collect(const TSV & fields, const std::string & tag){
+void CollectTagCountry::_aggregate(const TSV & fields, const std::string & tag){
 	++data_single_tag[ fields.country() ];
 }
 

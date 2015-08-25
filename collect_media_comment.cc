@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-void CollectMediaComment::_collect(const TSV & fields, const std::string & med){
+void CollectMediaComment::_aggregate(const TSV & fields, const std::string & med){
 	if (data_hc)
 		return;
 

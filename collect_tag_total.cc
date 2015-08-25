@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-void CollectTagTotal::_collect(const TSV & fields, const std::string & tag){
+void CollectTagTotal::_aggregate(const TSV & fields, const std::string & tag){
 	++count_single_tag;
 }
 
