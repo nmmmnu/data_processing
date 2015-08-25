@@ -8,7 +8,9 @@
 
 class CollectMediaLike : public ICollectCounter{
 public:
-	using ICollectCounter::ICollectCounter;
+//	using ICollectCounter::ICollectCounter;
+	CollectMediaLike(const std::string &prefix, const std::string &name, unsigned const topCount) :
+				ICollectCounter(prefix, name, topCount){}
 
 private:
 	virtual uint64_t _getCount(const TSV & fields) const override{
@@ -20,7 +22,9 @@ private:
 
 class CollectMediaComment : public ICollectCounter{
 public:
-	using ICollectCounter::ICollectCounter;
+//	using ICollectCounter::ICollectCounter;
+	CollectMediaComment(const std::string &prefix, const std::string &name, unsigned const topCount) :
+				ICollectCounter(prefix, name, topCount){}
 
 private:
 	virtual uint64_t _getCount(const TSV & fields) const override{
@@ -32,7 +36,9 @@ private:
 
 class CollectMediaLikeCountry : public ICollectAggregate{
 public:
-	using ICollectAggregate::ICollectAggregate;
+//	using ICollectAggregate::ICollectAggregate;
+	CollectMediaLikeCountry(const std::string &prefix, unsigned const topCount) :
+				ICollectAggregate(prefix, topCount){}
 
 private:
 	virtual const std::string &_getItem(const TSV & fields) const override{
@@ -49,7 +55,9 @@ private:
 
 class CollectMediaCommentCountry : public ICollectAggregate{
 public:
-	using ICollectAggregate::ICollectAggregate;
+//	using ICollectAggregate::ICollectAggregate;
+	CollectMediaCommentCountry(const std::string &prefix, unsigned const topCount) :
+				ICollectAggregate(prefix, topCount){}
 
 private:
 	virtual const std::string &_getItem(const TSV & fields) const override{
