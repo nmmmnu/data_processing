@@ -7,16 +7,18 @@
 class TSV{
 public:
 	constexpr
-	static const char	DELIMITER	= '\t';
+	static const char		DELIMITER	= '\t';
 
 	constexpr
-	static const char	FIELDS_COUNT	= 10;
+	static const char		FIELDS_COUNT	= 10;
 
+public:
 	constexpr static const char	POS_COUNTRY	= 0;
 	constexpr static const char	POS_CITY	= 1;
 	constexpr static const char	POS_TAG		= 3;
-	constexpr static const char	POS_LIKE	= 7;
-	constexpr static const char	POS_COMMENT	= 8;
+	constexpr static const char	POS_MEDIA	= 4;
+	constexpr static const char	POS_LIKE	= 6;
+	constexpr static const char	POS_COMMENT	= 7;
 
 private:
 	std::array<std::string,FIELDS_COUNT>	_data;
@@ -46,15 +48,24 @@ public:
 		return get(POS_TAG);
 	}
 
-	const std::string & like() const{
-		return  get(POS_LIKE);
+	const std::string & media() const{
+		return get(POS_MEDIA);
 	}
 
-	const std::string & comment() const{
-		return get(POS_COMMENT);
+	uint32_t like() const{
+		return  _str2int(get(POS_LIKE));
+	}
+
+	uint32_t comment() const{
+		return _str2int(get(POS_COMMENT));
 	}
 
 	void load(const std::string & line);
+
+	void print() const;
+
+private:
+	static uint32_t _str2int(const std::string & s);
 };
 
 #endif

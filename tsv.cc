@@ -1,6 +1,8 @@
 #include "tsv.h"
 
 #include <sstream>
+#include <iostream>
+#include <iomanip>
 
 void TSV::load(const std::string & line){
 	std::stringstream ss(line);
@@ -16,4 +18,16 @@ void TSV::load(const std::string & line){
 	}
 }
 
+uint32_t TSV::_str2int(const std::string & s){
+	std::stringstream ss(s);
+	uint64_t num;
+	ss >> num;
+	return num;
+}
+
+void TSV::print() const{
+	char i = 0;
+	for (const auto &str : _data)
+		std::cout << std::setw(3) << (int) i++ << "\t" << str << std::endl;
+}
 
