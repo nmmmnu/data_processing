@@ -2,10 +2,6 @@
 
 #include <iostream>
 
-void CollectMediaTotal::_collect(const TSV & fields, const std::string & tag){
-	// empty
-}
-
 void CollectMediaTotal::_store(const std::string & tag){
 	++_count;
 }

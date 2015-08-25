@@ -18,7 +18,8 @@ private:
 	uint64_t			_count		= 0;
 
 private:
-	virtual void _collect(const TSV & fields, const std::string & tag) override;
+	virtual void _collect(const TSV & fields, const std::string & tag) override{}
+
 	virtual void _store(const std::string & tag) override;
 	virtual void _print() const override;
 };

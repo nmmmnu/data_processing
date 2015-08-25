@@ -2,15 +2,6 @@
 
 #include <iostream>
 
-#if 0
- 	if (med == "1006391563346316769_1005403394"){
-		std::cout << "here come " << med << " with " << data_single << " " << (data_hc ? "true" : "false") << std::endl;
-		std::cout << fields.like() << std::endl;
-		fields.print();
-	}
-
-#endif
-
 void CollectMediaLike::_collect(const TSV & fields, const std::string & med){
 	if (data_hc)
 		return;
