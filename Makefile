@@ -21,12 +21,12 @@ clean:
 	rm -f *.o *.d		\
 			$(TARGETS)
 
-processor_tag: main_tag.o printhelp.o processor.o tsv.o		\
+processor_tag: main_tag.o main_printhelp.o main_istream.o processor.o tsv.o		\
 						collect_aggregate.o collect_counter_all.o
 	$(LINK) $@ $^		$(LIBS)
 
 
-processor_media: main_media.o printhelp.o processor.o tsv.o	\
+processor_media: main_media.o main_printhelp.o main_istream.o processor.o tsv.o	\
 						collect_aggregate.o collect_counter_all.o
 	$(LINK) $@ $^		$(LIBS)
 

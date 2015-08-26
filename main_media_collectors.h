@@ -1,8 +1,12 @@
 #ifndef _MAIN_MEDIA_COLLECTORS_H
 #define _MAIN_MEDIA_COLLECTORS_H
 
+#include "processor.h"
+
 #include "collect_aggregate.h"
 #include "collect_counter.h"
+
+#include <iostream>
 
 // ==========================================
 
@@ -62,6 +66,19 @@ private:
 
 	virtual uint64_t _getCount(const TSV & fields) const override{
 		return fields.comment();
+	}
+};
+
+// ==========================================
+
+class ProcessorMedia : public Processor{
+public:
+	ProcessorMedia(std::istream & input, const std::vector<ICollect *> &collectors) :
+				Processor(input, collectors){}
+
+private:
+	virtual const std::string &getField(TSV &fields) const override{
+		return fields.media();
 	}
 };
 

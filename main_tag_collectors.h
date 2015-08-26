@@ -1,7 +1,11 @@
 #ifndef _MAIN_MEDIA_COLLECTORS_H
 #define _MAIN_MEDIA_COLLECTORS_H
 
+#include "processor.h"
+
 #include "collect_aggregate.h"
+
+#include <iostream>
 
 // ==========================================
 
@@ -45,6 +49,20 @@ private:
 private:
 	virtual const std::string &_getGroupItem(const TSV & fields, std::string &placeholder) const override{
 		return _name;
+	}
+};
+
+
+// ==========================================
+
+class ProcessorTag : public Processor{
+public:
+	ProcessorTag(std::istream & input, const std::vector<ICollect *> &collectors) :
+				Processor(input, collectors){}
+
+private:
+	virtual const std::string &getField(TSV &fields) const override{
+		return fields.tag();
 	}
 };
 

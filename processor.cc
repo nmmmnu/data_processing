@@ -12,10 +12,12 @@ void Processor::process(){
 	for(std::string line; getline(_input, line);){
 		fields.load(line);
 
-		if (fld != fields.get(_fieldID)){
+		const std::string &fld_data = getField(fields);
+
+		if (fld != fld_data ){
 			_store(fld);
 
-			fld = fields.get(_fieldID);
+			fld = fld_data;
 		}
 
 		_aggregate(fields, fld);

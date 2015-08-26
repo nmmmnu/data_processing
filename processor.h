@@ -12,14 +12,16 @@
 
 class Processor{
 public:
-	Processor(std::istream & input, const std::vector<ICollect *> &collectors, char const fieldID) :
+	Processor(std::istream & input, const std::vector<ICollect *> &collectors) :
 				_input(input),
-				_collectors(collectors),
-				_fieldID(fieldID){}
+				_collectors(collectors){}
 
 public:
 	void process();
 	void print() const;
+
+private:
+	virtual const std::string &getField(TSV &fields) const = 0;
 
 private:
 	void _aggregate(const TSV & fields, const std::string & fld);
@@ -28,7 +30,6 @@ private:
 private:
 	std::istream			&_input;
 	const std::vector<ICollect *>	&_collectors;
-	char				_fieldID;
 };
 
 #endif
