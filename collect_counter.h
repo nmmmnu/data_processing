@@ -7,8 +7,13 @@
 This class have following responsibility:
 ========================================
 It collects a number such a number of comments,
-store it in the "rolling" set,
-and keep up to _topCount rows.
+using "rolling" set, up to topCount
+For example:
+===========
+top 1000 media sorted by likes group by country
+where
+   country = data_item
+   media   = sub_item
 */
 
 class ICollectCounter : public ICollectAggregate{

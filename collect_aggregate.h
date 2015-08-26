@@ -10,11 +10,11 @@
 This class have following responsibility:
 ========================================
 It does basic aggregation,
-using "rolling" set, up to topCount
-For example media sorted by likes by country
-where country is data_item
-and media is subitem
-....
+using "rolling" set, up to topCount,
+without any group by.
+For example:
+===========
+top 1000 media sorted by likes, for all countries
 */
 
 class ICollectAggregate : public ICollect{
