@@ -3,9 +3,9 @@
 #include "defs.h"
 #include "processor.h"
 
-#include "collect_tag_country.h"
-#include "collect_tag_city.h"
-#include "collect_tag_total.h"
+#include "main_tag_collectors.h"
+
+#include "collect_counter_all.h"
 
 #include <iostream>
 #include <fstream>
@@ -28,11 +28,14 @@ int main(int argc, char **argv){
 		return printHelp(argv[0]);
 
 
-	CollectTagCountry	c1 = { "TOP_TAG_BY_COUNTRY",			TOP_COUNT, COUNTRY_RESERVE	};
-	CollectTagCity		c2 = { "TOP_TAG_BY_CITY",			TOP_COUNT, CITY_RESERVE		};
-	CollectTagTotal		c3 = { "TOP_TAG_TOTAL", 	"TOTAL",	TOP_COUNT			};
+	CollectTagCountry	cc1 = { "TOP_TAG_BY_COUNTRY",	TOP_COUNT	};
+	CollectTagCity		cc2 = { "TOP_TAG_BY_CITY",	TOP_COUNT	};
 
-	std::vector<ICollect *> collectors = { &c1, &c2, &c3 };
+	CollectTagTotal		ctt = { "TOP_TAG_TOTAL", 	TOP_COUNT,	"TOTAL"	};
+
+	CollectCounterAll	cta = { "TOTAL_TAGS",				"TOTAL"	};
+
+	std::vector<ICollect *> collectors = { &cc1, &cc2, &ctt, &cta };
 
 
 	Processor p = { constructStream(argv[1]), collectors, TSV::POS_TAG };

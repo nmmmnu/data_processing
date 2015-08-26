@@ -3,7 +3,20 @@
 #include <iostream>
 
 void ICollectAggregate::_aggregate(const TSV & fields, const std::string & med){
-	data_single[ _getItem(fields) ] = _getCount(fields);
+	switch(_op){
+	case OP_SUM:
+		data_single[ _getItem(fields, _placeholderBuffer) ] += _getCount(fields);
+		break;
+
+	case OP_COUNT:
+		++data_single[ _getItem(fields, _placeholderBuffer) ];
+		break;
+
+	case OP_SET:
+	default:
+		data_single[ _getItem(fields, _placeholderBuffer) ] = _getCount(fields);
+		break;
+	}
 }
 
 void ICollectAggregate::_store(const std::string & sub_item){	// tag

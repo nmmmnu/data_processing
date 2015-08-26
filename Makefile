@@ -9,6 +9,8 @@ CC	= $(MYCC) -std=c++11 -Wall $(OPTIM)	\
 LINK	= $(MYCC) -o
 LIBS	= -lstdc++
 
+SRC	= $(wildcard *.cc)
+
 TARGETS	=			\
 	processor_tag		\
 	processor_media
@@ -19,12 +21,13 @@ clean:
 	rm -f *.o *.d		\
 			$(TARGETS)
 
-processor_tag: main_tag.o printhelp.o processor.o tsv.o	\
-			collect_tag_country.o collect_tag_city.o collect_tag_total.o
+processor_tag: main_tag.o printhelp.o processor.o tsv.o		\
+						collect_aggregate.o collect_counter_all.o
 	$(LINK) $@ $^		$(LIBS)
 
 
-processor_media: main_media.o printhelp.o processor.o tsv.o collect_counter.o collect_counter_all.o collect_aggregate.o
+processor_media: main_media.o printhelp.o processor.o tsv.o	\
+						collect_aggregate.o collect_counter_all.o collect_counter.o
 	$(LINK) $@ $^		$(LIBS)
 
 
