@@ -34,7 +34,10 @@ private:
 		// empty
 	}
 
-	virtual void _store(const std::string & tag) override;
+	virtual void _store(const std::string & tag) override{
+		++_count;
+	}
+
 	virtual void _print() const override;
 };
 

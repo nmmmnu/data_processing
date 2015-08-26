@@ -3,8 +3,6 @@
 
 #include "collect.h"
 
-#include <set>
-
 /*
 This class have following responsibility:
 ========================================
@@ -13,29 +11,21 @@ store it in the "rolling" set,
 and keep up to _topCount rows.
 */
 
-class ICollectCounter : public ICollect{
+class ICollectCounter : public ICollectAggregate{
 public:
-	ICollectCounter(const std::string &prefix, const std::string &name, unsigned const topCount) :
-				ICollect(prefix),
-				_name(name),
-				_topCount(topCount){}
+	ICollectCounter(const std::string &prefix, unsigned const topCount, const std::string &name) :
+				ICollectAggregate(prefix, topCount, OP_SET),
+				_name(name){}
+
 
 private:
-	std::string			_name;
-	unsigned			_topCount;
-
-	std::set<MyPair,MyPairComp>	data;
-	uint64_t			data_single		= 0;
-	uint64_t			data_minimum		= 0;
-	bool				data_hitcount		= false	;
+	virtual const std::string &_getGroupItem(const TSV & fields, std::string &placeholder) const override{
+		return _name;
+	}
 
 private:
-	virtual void _aggregate(const TSV & fields, const std::string & tag) override;
-	virtual void _store(const std::string & tag) override;
-	virtual void _print() const override;
+	std::string _name;
 
-private:
-	virtual uint64_t _getCount(const TSV & fields) const = 0;
 };
 
 #endif

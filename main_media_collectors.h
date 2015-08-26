@@ -1,16 +1,15 @@
 #ifndef _MAIN_MEDIA_COLLECTORS_H
 #define _MAIN_MEDIA_COLLECTORS_H
 
-#include "collect_counter.h"
 #include "collect_aggregate.h"
+#include "collect_counter.h"
 
 // ==========================================
 
 class CollectMediaLike : public ICollectCounter{
 public:
-//	using ICollectCounter::ICollectCounter;
-	CollectMediaLike(const std::string &prefix, const std::string &name, unsigned const topCount) :
-				ICollectCounter(prefix, name, topCount){}
+	CollectMediaLike(const std::string &prefix, unsigned const topCount, const std::string &name) :
+				ICollectCounter(prefix, topCount, name){}
 
 private:
 	virtual uint64_t _getCount(const TSV & fields) const override{
@@ -22,9 +21,8 @@ private:
 
 class CollectMediaComment : public ICollectCounter{
 public:
-//	using ICollectCounter::ICollectCounter;
-	CollectMediaComment(const std::string &prefix, const std::string &name, unsigned const topCount) :
-				ICollectCounter(prefix, name, topCount){}
+	CollectMediaComment(const std::string &prefix, unsigned const topCount, const std::string &name) :
+				ICollectCounter(prefix, topCount, name){}
 
 private:
 	virtual uint64_t _getCount(const TSV & fields) const override{
@@ -32,42 +30,39 @@ private:
 	}
 };
 
+
 // ==========================================
 
 class CollectMediaLikeCountry : public ICollectAggregate{
 public:
-//	using ICollectAggregate::ICollectAggregate;
 	CollectMediaLikeCountry(const std::string &prefix, unsigned const topCount) :
-				ICollectAggregate(prefix, topCount){}
+				ICollectAggregate(prefix, topCount, OP_SET){}
 
 private:
-	virtual const std::string &_getItem(const TSV & fields) const override{
+	virtual const std::string &_getGroupItem(const TSV & fields, std::string &placeholder) const override{
 		return fields.country();
 	}
 
 	virtual uint64_t _getCount(const TSV & fields) const override{
 		return fields.like();
 	}
-
 };
 
 // ==========================================
 
 class CollectMediaCommentCountry : public ICollectAggregate{
 public:
-//	using ICollectAggregate::ICollectAggregate;
 	CollectMediaCommentCountry(const std::string &prefix, unsigned const topCount) :
-				ICollectAggregate(prefix, topCount){}
+				ICollectAggregate(prefix, topCount, OP_SET){}
 
 private:
-	virtual const std::string &_getItem(const TSV & fields) const override{
+	virtual const std::string &_getGroupItem(const TSV & fields, std::string &placeholder) const override{
 		return fields.country();
 	}
 
 	virtual uint64_t _getCount(const TSV & fields) const override{
 		return fields.comment();
 	}
-
 };
 
 #endif

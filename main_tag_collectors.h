@@ -11,7 +11,7 @@ public:
 				ICollectAggregate(prefix, topCount, OP_COUNT){}
 
 private:
-	virtual const std::string &_getItem(const TSV & fields, std::string &placeholder) const override{
+	virtual const std::string &_getGroupItem(const TSV & fields, std::string &placeholder) const override{
 		return fields.country();
 	}
 };
@@ -24,7 +24,7 @@ public:
 				ICollectAggregate(prefix, topCount, OP_COUNT){}
 
 private:
-	virtual const std::string &_getItem(const TSV & fields, std::string &placeholder) const override{
+	virtual const std::string &_getGroupItem(const TSV & fields, std::string &placeholder) const override{
 		placeholder = fields.country() + ":" + fields.city();
 
 		return placeholder;
@@ -43,7 +43,7 @@ private:
 	std::string _name;
 
 private:
-	virtual const std::string &_getItem(const TSV & fields, std::string &placeholder) const override{
+	virtual const std::string &_getGroupItem(const TSV & fields, std::string &placeholder) const override{
 		return _name;
 	}
 };

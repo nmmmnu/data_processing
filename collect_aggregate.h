@@ -45,7 +45,7 @@ private:
 	virtual void _print() const override;
 
 private:
-	virtual const std::string &_getItem(const TSV & fields, std::string &placeholder) const = 0;
+	virtual const std::string &_getGroupItem(const TSV & fields, std::string &placeholder) const = 0;
 	virtual uint64_t _getCount(const TSV & fields) const{
 		return 1;
 	}
