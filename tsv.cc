@@ -20,9 +20,10 @@ void TSV::load(const std::string & line){
 
 uint32_t TSV::_str2int(const std::string & s){
 	std::stringstream ss(s);
-	uint64_t num;
+	int32_t num;
 	ss >> num;
-	return num;
+
+	return num < 0 ? 0 : num;
 }
 
 void TSV::print() const{
