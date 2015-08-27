@@ -24,7 +24,7 @@ public:
 
 
 private:
-	virtual const std::string &_getGroupItem(const TSV & fields, std::string &placeholder) const override{
+	virtual const std::string &_getGroupItem(const TSV & fields) override{
 		return _name;
 	}
 

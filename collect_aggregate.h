@@ -33,8 +33,6 @@ private:
 	unsigned	_topCount;
 	char		_op;
 
-	std::string	_placeholderBuffer;
-
 	std::unordered_map<std::string, std::set<MyPair,MyPairComp> >	data;
 	std::unordered_map<std::string, uint64_t>			data_single;
 	std::unordered_map<std::string, uint64_t>			data_minimums;
@@ -45,7 +43,7 @@ private:
 	virtual void _print() const override;
 
 private:
-	virtual const std::string &_getGroupItem(const TSV & fields, std::string &placeholder) const = 0;
+	virtual const std::string &_getGroupItem(const TSV & fields) = 0;
 	virtual uint64_t _getCount(const TSV & fields) const{
 		return 1;
 	}

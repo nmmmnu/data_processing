@@ -15,6 +15,7 @@ public:
 public:
 	constexpr static const char	POS_COUNTRY	= 0;
 	constexpr static const char	POS_CITY	= 1;
+	constexpr static const char	POS_USER	= 2;
 	constexpr static const char	POS_TAG		= 3;
 	constexpr static const char	POS_MEDIA	= 4;
 	constexpr static const char	POS_LIKE	= 6;
@@ -42,6 +43,10 @@ public:
 
 	const std::string & city() const{
 		return get(POS_CITY);
+	}
+
+	const std::string & user() const{
+		return get(POS_USER);
 	}
 
 	const std::string & tag() const{

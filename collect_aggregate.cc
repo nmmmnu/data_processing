@@ -5,16 +5,16 @@
 void ICollectAggregate::_aggregate(const TSV & fields, const std::string & med){
 	switch(_op){
 	case OP_SUM:
-		data_single[ _getGroupItem(fields, _placeholderBuffer) ] += _getCount(fields);
+		data_single[ _getGroupItem(fields) ] += _getCount(fields);
 		break;
 
 	case OP_COUNT:
-		++data_single[ _getGroupItem(fields, _placeholderBuffer) ];
+		++data_single[ _getGroupItem(fields) ];
 		break;
 
 	case OP_SET:
 	default:
-		data_single[ _getGroupItem(fields, _placeholderBuffer) ] = _getCount(fields);
+		data_single[ _getGroupItem(fields) ] = _getCount(fields);
 		break;
 	}
 }
