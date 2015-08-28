@@ -1,7 +1,7 @@
 #ifndef _COLLECT_COUNTER_H
 #define _COLLECT_COUNTER_H
 
-#include "collect.h"
+#include "collect_aggregate.h"
 
 /*
 This class have following responsibility:
@@ -18,10 +18,9 @@ where
 
 class ICollectCounter : public ICollectAggregate{
 public:
-	ICollectCounter(const std::string &prefix, unsigned const topCount, const std::string &name) :
-				ICollectAggregate(prefix, topCount, OP_SET),
+	ICollectCounter(const std::string &prefix, unsigned const topCount, const std::string &name, char const op = OP_SET) :
+				ICollectAggregate(prefix, topCount, op),
 				_name(name){}
-
 
 private:
 	virtual const std::string &_getGroupItem(const TSV & fields) override{

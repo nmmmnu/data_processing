@@ -20,6 +20,9 @@ void Processor::process(){
 			fld = fld_data;
 		}
 
+		if (getSkip(fields))
+			continue;
+
 		_aggregate(fields, fld);
 	}
 

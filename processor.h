@@ -23,6 +23,10 @@ public:
 private:
 	virtual const std::string &getField(TSV &fields) const = 0;
 
+	virtual bool getSkip(TSV &fields){
+		return false;
+	};
+
 private:
 	void _aggregate(const TSV & fields, const std::string & fld);
 	void _store(const std::string & fld);

@@ -44,7 +44,7 @@ private:
 
 private:
 	virtual const std::string &_getGroupItem(const TSV & fields) = 0;
-	virtual uint64_t _getCount(const TSV & fields) const{
+	virtual uint64_t _getCount(const TSV & fields){
 		return 1;
 	}
 

@@ -16,7 +16,7 @@ public:
 				ICollectCounter(prefix, topCount, name){}
 
 private:
-	virtual uint64_t _getCount(const TSV & fields) const override{
+	virtual uint64_t _getCount(const TSV & fields) override{
 		return fields.like();
 	}
 };
@@ -29,7 +29,7 @@ public:
 				ICollectCounter(prefix, topCount, name){}
 
 private:
-	virtual uint64_t _getCount(const TSV & fields) const override{
+	virtual uint64_t _getCount(const TSV & fields) override{
 		return fields.comment();
 	}
 };
@@ -47,7 +47,7 @@ private:
 		return fields.country();
 	}
 
-	virtual uint64_t _getCount(const TSV & fields) const override{
+	virtual uint64_t _getCount(const TSV & fields) override{
 		return fields.like();
 	}
 };
@@ -64,7 +64,7 @@ private:
 		return fields.country();
 	}
 
-	virtual uint64_t _getCount(const TSV & fields) const override{
+	virtual uint64_t _getCount(const TSV & fields) override{
 		return fields.comment();
 	}
 };
