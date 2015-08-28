@@ -5,7 +5,7 @@
 
 class UniqueSet{
 public:
-	constexpr static const auto MAX_SIZE = 10000;
+	constexpr static const unsigned MAX_SIZE = 10000;
 
 public:
 	bool exists(const std::string &element, const std::string &group){
