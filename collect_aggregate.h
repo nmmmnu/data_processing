@@ -24,17 +24,20 @@ public:
 	constexpr static const char OP_COUNT	= 2;
 
 public:
-	ICollectAggregate(const std::string &prefix, unsigned const topCount, char const op) :
+	ICollectAggregate(const std::string &prefix, unsigned const topCount, char const op, bool const avg = false) :
 				ICollect(prefix),
 				_topCount(topCount),
-				_op(op){}
+				_op(op),
+				_avg(avg){}
 
 private:
 	unsigned	_topCount;
 	char		_op;
+	bool		_avg;
 
 	std::unordered_map<std::string, std::set<MyPair,MyPairComp> >	data;
 	std::unordered_map<std::string, uint64_t>			data_single;
+	std::unordered_map<std::string, uint64_t>			data_single_relative;
 	std::unordered_map<std::string, uint64_t>			data_minimums;
 
 private:

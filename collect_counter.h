@@ -18,8 +18,8 @@ where
 
 class ICollectCounter : public ICollectAggregate{
 public:
-	ICollectCounter(const std::string &prefix, unsigned const topCount, const std::string &name, char const op = OP_SET) :
-				ICollectAggregate(prefix, topCount, op),
+	ICollectCounter(const std::string &prefix, unsigned const topCount, const std::string &name, char const op = OP_SET, bool const avg = false) :
+				ICollectAggregate(prefix, topCount, op, avg),
 				_name(name){}
 
 private:

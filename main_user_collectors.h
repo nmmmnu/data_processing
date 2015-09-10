@@ -11,9 +11,9 @@
 
 // ==========================================
 
-class CollectUserTags : public ICollectAggregateUser{
+class CollectUserTopTags : public ICollectAggregateUser{
 public:
-	CollectUserTags(const std::string &prefix, unsigned const topCount) :
+	CollectUserTopTags(const std::string &prefix, unsigned const topCount) :
 				ICollectAggregateUser(prefix, topCount){}
 
 private:
@@ -25,9 +25,9 @@ private:
 
 // ==========================================
 
-class CollectUserCountry : public ICollectAggregateUser{
+class CollectUserTopCountry : public ICollectAggregateUser{
 public:
-	CollectUserCountry(const std::string &prefix, unsigned const topCount) :
+	CollectUserTopCountry(const std::string &prefix, unsigned const topCount) :
 				ICollectAggregateUser(prefix, topCount){}
 
 private:
@@ -35,6 +35,63 @@ private:
 		return fields.country();
 	};
 
+};
+
+// ==========================================
+
+class CollectUserAllLikes : public ICollectAggregateUser{
+public:
+	CollectUserAllLikes(const std::string &prefix, unsigned const topCount) :
+				ICollectAggregateUser(prefix, topCount, OP_SUM){}
+
+private:
+	virtual const std::string &_getGroupItem(const TSV & fields){
+		return _item;
+	};
+
+	virtual uint64_t _getCount(const TSV & fields){
+		return fields.like();
+	}
+
+private:
+	const std::string _item = "like";
+};
+
+// ==========================================
+
+class CollectUserAllComments : public ICollectAggregateUser{
+public:
+	CollectUserAllComments(const std::string &prefix, unsigned const topCount) :
+				ICollectAggregateUser(prefix, topCount, OP_SUM){}
+
+private:
+	virtual const std::string &_getGroupItem(const TSV & fields){
+		return _item;
+	};
+
+	virtual uint64_t _getCount(const TSV & fields){
+		return fields.comment();
+	}
+
+private:
+	const std::string _item = "comment";
+};
+
+// ==========================================
+
+class CollectUserAllCountry : public ICollectAggregateUser{
+public:
+	CollectUserAllCountry(const std::string &prefix, unsigned const topCount) :
+				ICollectAggregateUser(prefix, topCount, OP_COUNT){}
+
+private:
+	virtual const std::string &_getGroupItem(const TSV & fields){
+		return fields.country();
+	};
+
+	virtual uint64_t _getCount(const TSV & fields){
+		return 1;
+	}
 };
 
 // ==========================================
@@ -73,6 +130,32 @@ public:
 private:
 	virtual uint64_t _getCount(const TSV & fields) override{
 		return 1;
+	}
+};
+
+// ==========================================
+
+class CollectUserRelLikes : public ICollectCounter{
+public:
+	CollectUserRelLikes(const std::string &prefix, unsigned const topCount, const std::string &name) :
+				ICollectCounter(prefix, topCount, name, OP_SUM, true){}
+
+private:
+	virtual uint64_t _getCount(const TSV & fields) override{
+		return fields.like();
+	}
+};
+
+// ==========================================
+
+class CollectUserRelComments : public ICollectCounter{
+public:
+	CollectUserRelComments(const std::string &prefix, unsigned const topCount, const std::string &name) :
+				ICollectCounter(prefix, topCount, name, OP_SUM, true){}
+
+private:
+	virtual uint64_t _getCount(const TSV & fields) override{
+		return fields.comment();
 	}
 };
 

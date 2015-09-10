@@ -3,6 +3,10 @@
 #include <iostream>
 
 void ICollectAggregate::_aggregate(const TSV & fields, const std::string & med){
+	if (_avg){
+		++data_single_relative[ _getGroupItem(fields) ];
+	}
+
 	switch(_op){
 	case OP_SUM:
 		{
@@ -26,7 +30,16 @@ void ICollectAggregate::_aggregate(const TSV & fields, const std::string & med){
 void ICollectAggregate::_store(const std::string & sub_item){	// tag
 	for ( const auto & pair : data_single ){
 		const auto & data_item  = pair.first;		// country
-		const auto & sub_count  = pair.second;		// count
+		      auto   sub_count  = pair.second;		// count
+
+		if (_avg){
+			const uint64_t dividor = data_single_relative[data_item];
+
+			if (dividor == 0)
+				continue; // division by zero
+
+			sub_count = sub_count / dividor;
+		}
 
 		if (data_minimums[data_item] > sub_count)
 			continue;
@@ -47,6 +60,10 @@ void ICollectAggregate::_store(const std::string & sub_item){	// tag
 	}
 
 	data_single.clear();
+
+	if (_avg){
+		data_single_relative.clear();
+	}
 }
 
 void ICollectAggregate::_print() const{
